@@ -28,6 +28,7 @@ module.exports = {
     "space-before-function-paren": 0,
     "eol-last": 0,
     "indent":[0,2],
-    "no-trailing-spaces":0
+    "no-trailing-spaces":0,
+    "no-multiple-empty-lines":0
   }
 }

@@ -1,7 +1,7 @@
 import Vue from 'vue'
 import VueRouter from 'vue-router'
 import Home from '../components/Home'
-import Detail from '../components/Detail'
+import List from '../components/List'
 import Add from '../components/Add'
 import Collect from '../components/Collect'
 
@@ -17,9 +17,9 @@ export default new VueRouter({
       name: 'home',
       component: Home
     }, {
-      path: '/detail',
-      name: 'detail',
-      component: Detail
+      path: '/list',
+      name: 'List',
+      component: List
     }, {
       path: '/add',
       name: 'add',

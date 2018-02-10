@@ -5,6 +5,10 @@
         <i class="iconfont icon-home"></i>
         <span>首页</span>
       </router-link>
+      <router-link to="/list" tag="li">
+        <i class="iconfont icon-list"></i>
+        <span>列表</span>
+      </router-link>
       <router-link to="/add" tag="li">
         <i class="iconfont icon-add"></i>
         <span>添加</span>
@@ -12,10 +16,6 @@
       <router-link to="/collect" tag="li">
         <i class="iconfont icon-collect"></i>
         <span>收藏</span>
-      </router-link>
-      <router-link to="/detail" tag="li">
-        <i class="iconfont icon-list"></i>
-        <span>列表</span>
       </router-link>
     </ul>
   </div>
@@ -28,7 +28,6 @@
 
 <style scoped lang="less">
   @import "../assets/style/varible";
-  
   .nar-wrap {
     width: 100%;
     position: fixed;
@@ -37,7 +36,7 @@
     .main-nav {
       display: flex;
       width: 100%;
-      height: 50px;
+      height: 40px;
       align-item: center;
       li {
         display: flex;
@@ -45,7 +44,7 @@
         flex-direction: column;
         flex: 1;
         text-align: center;
-        background-color: #cccccc;
+        background-color: #ccc;
         color: #666;
         padding: 5px 0;
         &:before{

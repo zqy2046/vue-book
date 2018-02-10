@@ -1,11 +1,19 @@
 <template>
-    <div>Collect</div>
+  <div>
+    <m-header :back="true">
+      <h1>收藏</h1>
+    </m-header>
+  </div>
 </template>
 
 <script>
-export default {
-  name: 'collect'
-}
+  import MHeader from '../base/MHeader'
+  export default {
+    name: 'collect',
+    components: {
+      MHeader
+    }
+  }
 </script>
 
 <style scoped>
