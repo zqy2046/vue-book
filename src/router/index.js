@@ -4,7 +4,7 @@ import Home from '../components/Home'
 import List from '../components/List'
 import Add from '../components/Add'
 import Collect from '../components/Collect'
-
+import Detail from '../components/Detail'
 Vue.use(VueRouter)
 
 export default new VueRouter({
@@ -31,6 +31,10 @@ export default new VueRouter({
     }, {
       path: '*',
       component: Home
+    }, {
+      path: '/detail/:bid',
+      name: 'detail',
+      component: Detail
     }
   ],
   linkActiveClass: 'active'

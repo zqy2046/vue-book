@@ -18,3 +18,7 @@ export const getBooks = () => {
 export const removeBook = (id) => {
   return axios.delete(`/books?id=${id}`)
 }
+export const findOneBook = (id) => {
+  console.log('chufa')
+  return axios.get(`/books?id=${id}`)
+}

@@ -22,7 +22,9 @@ function write(filename, data, cb) {
     !err && cb()
   })
 }
-
+function setHeader(res) {
+  return res.setHeader('Content-Type', 'application/json;charset=utf-8')
+}
 
 http.createServer((req, res) => {
   res.setHeader('Access-Control-Allow-Origin', '*')
@@ -49,15 +51,23 @@ http.createServer((req, res) => {
   
   // 列表
   if (pathname === '/books') {
-    let id = parseInt(query.id) // 取出的是字符串;
+    let id = query.id // 取出的是字符串;
     switch (req.method) {
       case 'GET':
         if (id) {
-        
+          read('./books.json').then((books) => {
+            books = JSON.parse(books)
+            let book = books.find((item) => {
+              return item.bookId === id
+            })
+            if (!book) book = {}
+            setHeader(res)
+            return res.end(JSON.stringify(book))
+          })
         } else {
-          read('./books.json').then((data) => {
-            res.setHeader('Content-Type', 'application/json;charset=utf-8')
-            return res.end(JSON.stringify(JSON.parse(data).reverse()))
+          read('./books.json').then((books) => {
+            setHeader(res)
+            return res.end(JSON.stringify(JSON.parse(books).reverse()))
           })
         }
         break
@@ -71,7 +81,7 @@ http.createServer((req, res) => {
           result = result.filter((item) => {
             return item.bookId !== id
           })
-          write('./books.json', result, function() {
+          write('./books.json', result, function () {
             res.end(JSON.stringify({}))// 删除返回空对象
           })
         })

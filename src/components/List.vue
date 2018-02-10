@@ -4,8 +4,13 @@
       <h1>列表页</h1>
     </m-header>
     <div class="content">
-      <ul>
-        <li v-for="(book,index) in bookLists" :key="index">
+      <div class="list-wrap">
+        <div v-for="(book,index) in bookLists"
+                     class="list-item"
+                     :key="index"
+                     @click="locate(book)"
+                     tag="div"
+        >
           <div class="left">
             <img :src="book.bookImage" alt="">
           </div>
@@ -13,10 +18,10 @@
             <h2>{{book.bookName}}</h2>
             <p class="book-info">{{book.bookInfo}}</p>
             <p class="book-price">¥{{book.bookPrice}}</p>
-            <button class="remove" @click="remove(book.bookId)">删除</button>
+            <button class="remove" @click.stop="remove(book.bookId)">删除</button>
           </div>
-        </li>
-      </ul>
+        </div>
+      </div>
     </div>
   </div>
 </template>
@@ -43,9 +48,11 @@
         await removeBook(id)
         // 更新视图;
         this.bookLists = this.bookLists.filter((item) => {
-          console.log(item)
           return item.bookId !== id
         })
+      },
+      locate(book) {
+        this.$router.push({name:'detail',params:{bid:book.bookId}})
       }
     },
     components: {
@@ -57,9 +64,9 @@
 <style scoped lang="less">
   .content {
     width: 100%;
-    ul {
+    .list-wrap {
       padding: 10px;
-      li {
+      .list-item {
         width: 100%;
         display: flex;
         padding: 15px 0 15px 0;
