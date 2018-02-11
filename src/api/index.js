@@ -19,6 +19,9 @@ export const removeBook = (id) => {
   return axios.delete(`/books?id=${id}`)
 }
 export const findOneBook = (id) => {
-  console.log('chufa')
   return axios.get(`/books?id=${id}`)
+}
+export const changeSomeBook = (data) => {
+  let id = data.bookId;
+  return axios.put(`/books?id=${id}`, data)
 }

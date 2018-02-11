@@ -22,6 +22,7 @@ function write(filename, data, cb) {
     !err && cb()
   })
 }
+
 function setHeader(res) {
   return res.setHeader('Content-Type', 'application/json;charset=utf-8')
 }
@@ -74,6 +75,27 @@ http.createServer((req, res) => {
       case 'POST':
         break
       case 'PUT':
+        if (id) {
+          let str = '';
+          req.on('data', chunk => {
+            str += chunk;
+          });
+          req.on('end', () => {
+            console.log(str);
+            let book = JSON.parse(str);
+            read('./books.json').then((bookList) => {
+              bookList = JSON.parse(bookList).map((item) => {
+                if (item.bookId === id) {
+                  return book;
+                }
+                return item;
+              });
+              write('./books.json', bookList, function () {
+                res.end(JSON.stringify({}))// 删除返回空对象
+              })
+            })
+          })
+        }
         break
       case 'DELETE':
         read('./books.json').then((bookList) => {

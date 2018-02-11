@@ -1,9 +1,7 @@
 <template>
   <div>
     <tab></tab>
-    <keep-alive>
       <router-view></router-view>
-    </keep-alive>
   </div>
 </template>
 
@@ -18,5 +16,3 @@
     }
   }
 </script>
-<style lang="less">
-</style>
