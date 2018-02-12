@@ -1,8 +1,6 @@
 <template>
   <div class="add-wrap">
-    <m-header :back="true"><h1>添加</h1></m-header>
     <div class="detail">
-      <m-header :back="true">添加图书</m-header>
       <dl class="book">
         <dd>
           <label for="bookName">书籍名称</label>
@@ -18,7 +16,7 @@
         </dd>
         <dd class="price">
           <label for="bookImage">书籍封面</label>
-          <input  id="bookImage" v-model="book.bookImage"></input>
+          <input id="bookImage" v-model="book.bookImage"></input>
         </dd>
         <dd>
           <input type="button" @click="add" value="确认添加">
@@ -30,6 +28,7 @@
 <script>
   import MHeader from '../base/MHeader'
   import {addBook} from '../api'
+
   export default {
     name: 'add',
     data() {
@@ -39,7 +38,7 @@
     },
     methods: {
       async add() {
-        if(Object.keys(this.book).length) {
+        if (Object.keys(this.book).length) {
           await addBook(this.book)
           this.$router.push('./list')
         }
@@ -51,11 +50,11 @@
   }
 </script>
 <style scoped lang="less">
-  .add-wrap{
+  .add-wrap {
     width: 100%;
-    height:100%;
-    position:absolute;
-    top: 0;
+    height: 100%;
+    position: absolute;
+    top: 40px;
     .detail {
       width: 100%;
       position: absolute;
@@ -90,7 +89,7 @@
         width: 80%;
         margin: 0 auto;
       }
-    
+
     }
   }
 </style>

@@ -12,14 +12,19 @@ export default new VueRouter({
   routes: [
     {
       path: '/',
-      redirect: Home
+      redirect: Home,
+      meta:{
+        index:1,
+        name:'首页'
+      }
     },
     {
       path: '/home',
       name: 'home',
       component: Home,
       meta: {
-        index:1
+        index:1,
+        name:'首页'
       }
     },
     {
@@ -28,7 +33,8 @@ export default new VueRouter({
       component: List,
       meta:{
         keepAlive:false,
-        index:2
+        index:2,
+        name:'列表'
       }
     },
     {
@@ -36,7 +42,8 @@ export default new VueRouter({
       name: 'add',
       component: Add,
       meta:{
-        index:3
+        index:3,
+        name:'添加'
       }
     },
     {
@@ -44,7 +51,8 @@ export default new VueRouter({
       name: 'collect',
       component: Collect,
       meta:{
-        index:4
+        index:4,
+        name:'收藏'
       }
     },
     {
@@ -54,7 +62,10 @@ export default new VueRouter({
     {
       path: '/detail/:bid',
       name: 'detail',
-      component: Detail
+      component: Detail,
+      meta: {
+        name:'详情'
+      }
     }
   ],
   linkActiveClass: 'active'

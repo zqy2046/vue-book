@@ -1,18 +1,12 @@
 <template>
   <div>
-    <m-header :back="true">
-      <h1>收藏</h1>
-    </m-header>
+    收藏
   </div>
 </template>
 
 <script>
-  import MHeader from '../base/MHeader'
   export default {
     name: 'collect',
-    components: {
-      MHeader
-    }
   }
 </script>
 

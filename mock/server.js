@@ -83,7 +83,7 @@ let server = http.createServer((req, res) => {
           let book = JSON.parse(str);
           read('./books.json').then((bookList) => {
             bookList = JSON.parse(bookList);
-            book.bookId = bookList.length ? String(parseInt(bookList[bookList.length-1].bookId)+1) : '10001';
+            book.bookId = bookList.length ? String(parseInt(bookList[bookList.length - 1].bookId) + 1) : '10001';
             console.log(book.bookId);
             bookList.push(book);
             write('./books.json', bookList, function () {

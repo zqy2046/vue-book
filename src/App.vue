@@ -1,5 +1,8 @@
 <template>
   <div>
+    <m-header :back="true">
+      <h1>{{$route.meta.name}}</h1>
+    </m-header>
     <tab></tab>
     <transition :name="names">
       <keep-alive>
@@ -14,13 +17,12 @@
 
 <script>
   import Tab from './base/Tab'
-  import BookHeader from './base/MHeader'
-
+  import MHeader from './base/MHeader'
   export default {
 
     name: 'App',
     components: {
-      Tab, BookHeader
+      Tab, MHeader
     },
     data() {
       return {

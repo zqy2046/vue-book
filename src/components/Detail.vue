@@ -1,6 +1,5 @@
 <template>
   <div class="detail">
-    <m-header :back="true">详情页面</m-header>
     <dl class="book">
       <dt><h3>{{book.bookName}}</h3></dt>
       <dd>
@@ -12,7 +11,13 @@
       </dd>
       <dd class="price">
         <label for="bookPrice">书籍详情</label>
-        <textarea name="" id="bookPrice" cols="10" rows="5" v-model="book.bookInfo"></textarea>
+        <textarea name=""
+                  id="bookPrice"
+                  cols="10"
+                  rows="5"
+                  v-model="book.bookInfo"
+        >
+        </textarea>
       </dd>
       <dd>
         <input type="button" @click="changeBook" value="提交">
@@ -24,7 +29,7 @@
 <script>
   import MHeader from '../base/MHeader'
   import {findOneBook, changeSomeBook} from '../api'
-  
+
   export default {
     name: 'detail',
     data() {
@@ -75,7 +80,7 @@
     height: 100%;
     position: absolute;
     background-color: #fff;
-    top: 0;
+    top: 40px;
     left: 0;
     bottom: 0;
     right: 0;
@@ -105,6 +110,6 @@
       width: 80%;
       margin: 0 auto;
     }
-    
+
   }
 </style>

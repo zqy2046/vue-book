@@ -1,8 +1,5 @@
 <template>
   <div class="lists-wrap">
-    <m-header :back="true">
-      <h1>列表页</h1>
-    </m-header>
     <loading v-if="loading"></loading>
     <div class="content" v-else>
       <div class="list-wrap">
@@ -68,7 +65,7 @@
 <style scoped lang="less">
   .lists-wrap{
     position:absolute;
-    top: 0;
+    top: 40px;
     .content {
       width: 100%;
       .list-wrap {
