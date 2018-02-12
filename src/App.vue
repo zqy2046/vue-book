@@ -17,6 +17,7 @@
   import BookHeader from './base/MHeader'
   
   export default {
+    
     name: 'App',
     components: {
       Tab, BookHeader
