@@ -27,7 +27,8 @@ function setHeader(res) {
   return res.setHeader('Content-Type', 'application/json;charset=utf-8')
 }
 
-http.createServer((req, res) => {
+let server = http.createServer((req, res) => {
+  //设置跨域头;
   res.setHeader('Access-Control-Allow-Origin', '*')
   res.setHeader('Access-Control-Allow-Headers', 'Content-Type,Content-Length, Authorization, Accept,X-Requested-With')
   res.setHeader('Access-Control-Allow-Methods', 'PUT,POST,GET,DELETE,OPTIONS')
@@ -54,8 +55,8 @@ http.createServer((req, res) => {
   if (pathname === '/books') {
     let id = query.id // 取出的是字符串;
     switch (req.method) {
-      case 'GET':
-        if (id) {
+      case 'GET':// 获取图书
+        if (id) {//获取单本图书
           read('./books.json').then((books) => {
             books = JSON.parse(books)
             let book = books.find((item) => {
@@ -65,16 +66,33 @@ http.createServer((req, res) => {
             setHeader(res)
             return res.end(JSON.stringify(book))
           })
-        } else {
+        } else {//获取所有图书
           read('./books.json').then((books) => {
             setHeader(res)
             return res.end(JSON.stringify(JSON.parse(books).reverse()))
           })
         }
         break
-      case 'POST':
+      
+      case 'POST'://添加图书
+        let str = '';
+        req.on('data', chunk => {
+          str += chunk;
+        });
+        req.on('end', () => {
+          let book = JSON.parse(str);
+          read('./books.json').then((bookList) => {
+            bookList = JSON.parse(bookList);
+            book.bookId = bookList.length ? String(parseInt(bookList[bookList.length-1].bookId)+1) : '10001';
+            console.log(book.bookId);
+            bookList.push(book);
+            write('./books.json', bookList, function () {
+              res.end(JSON.stringify({}))// 删除返回空对象
+            })
+          })
+        })
         break
-      case 'PUT':
+      case 'PUT'://修改图书信息接口
         if (id) {
           let str = '';
           req.on('data', chunk => {
@@ -97,7 +115,7 @@ http.createServer((req, res) => {
           })
         }
         break
-      case 'DELETE':
+      case 'DELETE':  //  删除
         read('./books.json').then((bookList) => {
           let result = JSON.parse(bookList)
           result = result.filter((item) => {
@@ -110,6 +128,8 @@ http.createServer((req, res) => {
         break
     }
   }
-}).listen(3000, () => {
+});
+//监听3000端口
+server.listen(3000, () => {
   console.log('3000端口已监听')
 })

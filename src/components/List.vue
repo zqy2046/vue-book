@@ -1,9 +1,10 @@
 <template>
-  <div>
+  <div class="lists-wrap">
     <m-header :back="true">
       <h1>列表页</h1>
     </m-header>
-    <div class="content">
+    <loading v-if="loading"></loading>
+    <div class="content" v-else>
       <div class="list-wrap">
         <div v-for="(book,index) in bookLists"
                      class="list-item"
@@ -29,12 +30,14 @@
 <script>
   import MHeader from '../base/MHeader'
   import {getBooks, removeBook} from '../api'
-  
+  import Loading from '../base/Loading'
+
   export default {
     name: 'list',
     data() {
       return {
-        bookLists: []
+        bookLists: [],
+        loading: true
       }
     },
     created() {
@@ -42,7 +45,8 @@
     },
     methods: {
       async getData() {
-        this.bookLists = await getBooks()
+        this.bookLists = await getBooks();
+        this.loading = false;
       },
       async remove(id) {
         await removeBook(id)
@@ -56,49 +60,53 @@
       }
     },
     components: {
-      MHeader
+      MHeader,Loading
     }
   }
 </script>
 
 <style scoped lang="less">
-  .content {
-    width: 100%;
-    .list-wrap {
-      padding: 10px;
-      .list-item {
-        width: 100%;
-        display: flex;
-        padding: 15px 0 15px 0;
-        .left {
-          flex: 1;
-          img {
-            vertical-align: middle;
-            width: 100%;
+  .lists-wrap{
+    position:absolute;
+    top: 0;
+    .content {
+      width: 100%;
+      .list-wrap {
+        padding: 10px;
+        .list-item {
+          width: 100%;
+          display: flex;
+          padding: 15px 0 15px 0;
+          .left {
+            flex: 1;
+            img {
+              vertical-align: middle;
+              width: 100%;
+            }
           }
-        }
-        .right {
-          flex: 2;
-          padding: 15px;
-          h2 {
-            font-weight: normal;
-          }
-          .book-info {
-            font-size: 12px;
-            line-height: 1.2;
-            text-indent: 2em;
-          }
-          .book-price {
-            color: orangered;
-          }
-          .remove {
-            background-color: orange;
-            border-radius: 10px;
-            width: 50px;
-            height: 20px;
-            border: none;
-            line-height: 20px;
-            outline: none;
+          .right {
+            flex: 2;
+            padding: 15px;
+            h2 {
+              font-weight: normal;
+            }
+            .book-info {
+              font-size: 12px;
+              line-height: 1.2;
+              text-indent: 2em;
+            }
+            .book-price {
+              color: orangered;
+            }
+            .remove {
+              background-color: orange;
+              border-radius: 10px;
+              width: 50px;
+              height: 20px;
+              border: none;
+              line-height: 20px;
+              outline: none;
+            }
           }
         }
       }

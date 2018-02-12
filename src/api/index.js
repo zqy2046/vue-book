@@ -25,3 +25,9 @@ export const changeSomeBook = (data) => {
   let id = data.bookId;
   return axios.put(`/books?id=${id}`, data)
 }
+export const addBook = (data) => {
+  return axios.post('/books',data)
+}
+export const getAll = () => {
+  return axios.all([getSlidersData(),getHotBookData()])
+}

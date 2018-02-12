@@ -22,7 +22,6 @@
 
 <style scoped lang="less">
   .hot-book-list {
-    margin: 0 auto;
     h3{
       width: 100%;
       height: 30px;
@@ -43,7 +42,6 @@
         padding: 15px;
         box-sizing: border-box;
         .book-item-wrap {
-          border: 1px solid #ccc;
           padding: 10px;
           img {
             width: 100%;

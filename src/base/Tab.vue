@@ -1,7 +1,7 @@
 <template>
-  <div class="nar-wrap">
+  <div class="nav-wrap">
     <ul class="main-nav ">
-      <router-link exact to="/" tag="li">
+      <router-link exact to="/home" tag="li">
         <i class="iconfont icon-home"></i>
         <span>首页</span>
       </router-link>
@@ -28,7 +28,8 @@
 
 <style scoped lang="less">
   @import "../assets/style/varible";
-  .nar-wrap {
+  .nav-wrap {
+    z-index: 5;
     width: 100%;
     position: fixed;
     bottom: 0;
